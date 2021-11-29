@@ -1,0 +1,232 @@
+{{> headers this}}
+
+<div class="container">
+  <div class="row justify-content-md-center row-custom">
+    <div class="col-sm-8">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./category">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="#">Create Quiz</a></li>
+        </ol>
+      </nav>
+
+      {{#if success }}
+      <p class="success text-success"> {{message}} </p>
+      {{/if}}
+
+      {{#if is_error}}
+      <p class="error text-danger"> {{message}} </p>
+      {{/if}}
+
+      <form method="post">
+        <div class="form-group col-sm-6">
+          <label for="startDate">Start Date</label>
+          <input class="form-control" type="text" id="startDate" name="startDate" placeholder="mm/dd/yyyy"
+            onkeydown="return false"  autocomplete="off" required>
+
+          <label for="end_Date">End Date</label>
+          <input class="form-control" type="text" id="end_Date" name="endDate" placeholder="mm/dd/yyyy"
+            onkeydown="return false"  autocomplete="off" required>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="Categories">Select Category:</label>
+          <select class="form-control" name="Categories" id="Categories" required>
+            <option value="">Select</option>
+            {{#each categoryList}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="SubCategories">Select Sub-Category:</label>
+          <select class="form-control" name="SubCategories" id="SubCategories" required>
+            <option value="">Select</option>
+          </select>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="timer"> Timer(in minutes)</label>
+          <input class="form-control" type="number" id="timer" name="timer" placeholder="30" autocomplete="off" required>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <button name="addQuestion" id="addQuestion" class="btn btn-success" onclick="add()" type="button">Add
+            Question</button>
+        </div>
+        <div class="form-group col-sm-12 column" id="questions">
+
+        </div>
+        <div id="submit">
+          <button type="submit" name="submitQuiz" id="submitQuiz" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function deleteElem() {
+    var element = document.getElementById("questions");
+    var numberOfChildren = document.getElementsByName('questionName').length
+
+    document.getElementById('question' + numberOfChildren).outerHTML = "";
+
+    if ((numberOfChildren) == 1) {
+      document.getElementById("deleteButton").outerHTML = "";
+    }
+  }
+
+
+  function createOptionLabel(labelText, labelName) {
+    var labelA = document.createElement("label");
+    var nodeA = document.createTextNode(labelText);
+    labelA.setAttribute("for", labelName);
+    //labelA.setAttribute("align", "center");
+    if(labelName == "correctAnswer"){
+      labelA.setAttribute("class", "col-sm-12");
+    }else{
+      labelA.setAttribute("class", "col-sm-2");
+    }
+    labelA.appendChild(nodeA);
+    return labelA
+  }
+
+
+  function createOptioninput(inputName) {
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", inputName);
+    input.setAttribute("name", inputName);
+    //input.setAttribute("align", "center");
+    input.setAttribute("class", "form-control col-sm-4");
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("required", "");
+    return input
+  }
+
+  function add() {
+    var element = document.getElementById("questions");
+    var numberOfChildren = document.getElementsByName('questionName').length
+    if ((numberOfChildren) >= 10) {
+      return
+    }
+
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "row question" + (numberOfChildren + 1));
+    div.setAttribute("id", "question" + (numberOfChildren + 1));
+
+
+    var label = document.createElement("label");
+    var node = document.createTextNode("Question " + (numberOfChildren + 1) + ":  ");
+    label.setAttribute("for", "questionName");
+    label.setAttribute("align", "center");
+    label.appendChild(node);
+
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", "questionName");
+    input.setAttribute("name", "questionName");
+    input.setAttribute("align", "center");
+    input.setAttribute("class", "form-control");
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("required", "");
+
+    var line = document.createElement("br");
+    var line2 = document.createElement("br");
+
+    var labelA = createOptionLabel("Option 1", "optionA")
+    var optionA = createOptioninput("optionA")
+    var labelB = createOptionLabel("Option 2", "optionB")
+    var optionB = createOptioninput("optionB")
+    var labelC = createOptionLabel("Option 3", "optionC")
+    var optionC = createOptioninput("optionC")
+    var labelD = createOptionLabel("Option 4", "optionD")
+    var optionD = createOptioninput("optionD")
+    var correctAnswerLabel = createOptionLabel("Correct Answer (Please insert text exclty same as above option.)", "correctAnswer")
+    var correctAnswer = createOptioninput("correctAnswer")
+
+
+
+    div.appendChild(label);
+    div.appendChild(input);
+    div.appendChild(labelA);
+    div.appendChild(optionA);
+    div.appendChild(labelB);
+    div.appendChild(optionB);
+    div.appendChild(labelC);
+    div.appendChild(optionC);
+    div.appendChild(labelD);
+    div.appendChild(optionD);
+    div.appendChild(correctAnswerLabel);
+    div.appendChild(correctAnswer);
+    element.appendChild(div)
+
+    if ((numberOfChildren + 1) == 1) {
+      var deleteButton = document.createElement('button');
+      deleteButton.setAttribute("type", "button");
+      deleteButton.setAttribute("class", "btn btn-danger");
+      deleteButton.setAttribute("name", "deleteButton");
+      deleteButton.setAttribute("id", "deleteButton");
+      deleteButton.setAttribute("value", "Delete Button");
+      deleteButton.setAttribute("align", "center");
+      deleteButton.setAttribute("value", "Delete Button");
+      deleteButton.setAttribute("onclick", `deleteElem()`);
+      deleteButton.textContent = 'Delete Question';
+      var submit = document.getElementById("submit");
+      submit.appendChild(deleteButton);
+    }
+
+
+
+  }
+
+</script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#Categories").change(function () {
+      var categoryName = $(this).val();
+      if (categoryName != "") {
+        $.ajax({
+          url: "/professor/createQuiz/getSubCat",
+          data: { categoryName: categoryName },
+          type: 'POST',
+          success: function (response) {
+            var resp = '';
+            for (i in response) {
+              resp += `<option id=${response[i]}>${response[i]}</option>`
+            }
+            $("#SubCategories").html(resp);
+          }
+        });
+      } else {
+        $("#SubCategories").html("<option value=''>Select</option>");
+      }
+    });
+  });
+</script>
+
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#startDate').datepicker({
+      format: "mm/dd/yyyy",
+      startDate: new Date(),
+      autoclose: true
+    });
+    $('#end_Date').datepicker({
+      format: "mm/dd/yyyy",
+      startDate: new Date(),
+      autoclose: true
+    });
+  });
+</script>
