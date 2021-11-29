@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
         let checkEmail = await utils.variableSanityCheck(xss(req.body.email), "string", "Email");
         if (checkEmail.result)  email = (checkEmail.value).toLowerCase()
         else{
-            res.status(400).render('posts/login', { error: "Incorrect user input", "message":"", title: "Quizmania  - Login", notFound: false, userData:null})
+            res.status(400).render('posts/login', { error: "Incorrect user input", "message":"", title: "UniversityQuiz  - Login", notFound: false, userData:null})
             return;
         } 
         
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         let checkPassword = await utils.variableSanityCheck(xss(req.body.password), "string", "Password");
         if (checkPassword.result)  password = checkPassword.value
         else{
-            res.status(400).render('posts/login', { error: "Incorrect user input", "message":"", title: "Quizmania  - Login", notFound: false, userData:null})
+            res.status(400).render('posts/login', { error: "Incorrect user input", "message":"", title: "UniversityQuiz  - Login", notFound: false, userData:null})
             return;
         }
 
@@ -49,11 +49,11 @@ router.post('/', async (req, res) => {
             else if (req.session.user.userType === "professor")
                 res.redirect('professor/category')
         }else{
-            res.status(404).render('posts/login', { error: "Incorrect email or password!", title: "Quizmania  - Login",  notFound: false });
+            res.status(404).render('posts/login', { error: "Incorrect email or password!", title: "UniversityQuiz  - Login",  notFound: false });
         }
         
     } catch (e) {
-        res.status(e.statusCode?e.statusCode:500).render('posts/login', { error: e.error, title: "Quizmania  - Login",  notFound: false })
+        res.status(e.statusCode?e.statusCode:500).render('posts/login', { error: e.error, title: "UniversityQuiz  - Login",  notFound: false })
     }
 });
 
