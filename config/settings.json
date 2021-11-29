@@ -1,7 +1,7 @@
 {
   "mongoConfig": {
-    "serverUrl": "mongodb+srv://ashivank:mongodb2021@cluster0.szjer.mongodb.net/Group22_Final_Project_CS546?retryWrites=true&w=majority",
+    "serverUrl": "mongodb+srv://ashivank:mongodb2021@cluster0.speyj.mongodb.net/CS_545_UNIVERSITYQUIZ?retryWrites=true&w=majority",
     "serverUrl-for-local": "mongodb://localhost:27017/",
-    "database": "Group22_Final_Project_CS546"
+    "database": "CS_545_UNIVERSITYQUIZ"
   }
 }
