@@ -1,0 +1,37 @@
+{{> headers this}}
+
+<div class="container">
+    <div class="row justify-content-md-center row-custom">
+        <div class="col-sm-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../student/">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Enroll Now</a></li>
+                </ol>
+            </nav>
+            {{#if success }}
+            <p class="success text-success"> {{message}} </p>
+            {{/if}}
+
+            {{#if is_error}}
+            <p class="error text-danger"> {{message}} </p>
+            {{/if}}
+                <div id="studentSelectCategory">
+                    <div class="form-group">
+                        <label for="category_name_list">Category Name: </label>
+                        <select id="category_name_list">
+                            <option disabled>Select category</option>
+                            {{#each getAllCategoryData}}
+                            <option data-id="{{this.createdBy}}" data-value="{{this.category}}"> {{this.category}} - By - {{this.professorName}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <button type="submit" id="submitStudentCategoryData"
+                        class="btn btn-primary submitStudentCategoryData">Submit</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script src='/public/JS/student.js'></script>
