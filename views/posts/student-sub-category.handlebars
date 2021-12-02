@@ -1,0 +1,38 @@
+{{> headers this}}
+
+<div class="container">
+  <div class="row justify-content-md-center row-custom">
+    <div class="col-sm-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="#">Sub Category(Quiz)</a></li>
+        </ol>
+      </nav>
+      <div class="card col-sm-12">
+        <div class="card-body">
+          <h1 class="card-title">Sub Category(Quiz)</h1>
+        </div>
+        {{#each subCategoriesResult}}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{this.subCategory}}
+          <button type="submit" class="btn btn-primary startQuiz" data-id="{{this.quizID}}" id="takeAQuizID">Start Quiz</button>
+          </li>
+        </ul>
+        {{/each}}
+      </div>
+    {{> error-section this}}
+    </div>
+  </div>
+</div>
+<script>
+ 
+
+  $(".startQuiz").click(function (event){
+      let qid = $(this).data("id");
+      let encod = window.btoa(qid);
+      window.location.replace("../start-quiz/"+encod);
+      event.preventDefault();
+  })
+
+</script>

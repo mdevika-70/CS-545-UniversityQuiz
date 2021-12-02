@@ -1,0 +1,31 @@
+{{> headers this}}
+
+<div class="container">
+  <div class="row justify-content-md-center row-custom">
+    <div class="col-sm-10">
+      <h1>Dashboard</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        </ol>
+      </nav>
+      <div class="row-sm-10 enrollBtnDiv"><a href="/student/enroll-now" class="btn btn-primary enrollBtn">Enroll Now!</a></div>
+
+<div class="row-sm-10">
+{{#if categoriesResult.length }}
+      {{#each categoriesResult}}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h2 class="card-title">{{this}}</h2>
+          <p class="card-text"></p>
+          <a href="/student/category/{{this}}" class="btn btn-primary">View all quiz</a>
+        </div>
+        
+      </div>
+      {{/each}}
+      {{/if}}
+</div>
+{{> error-section this}}
+      </div>
+      </div>
+      </div>
