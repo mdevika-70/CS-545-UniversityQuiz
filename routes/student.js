@@ -124,4 +124,14 @@ router.post('/enroll-now', async (req, res) => {
     }
 })
 
+router.get('/micro-breaks', async (req, res) => {
+    try {
+        let score = await dashbaordData.getQuizData(req.session.user)
+        res.status(score.statusCode?score.statusCode:200).render('posts/microbreaks', { myres: score.data, message: score.message, error: score.error, userData : JSON.stringify(req.session.user) })
+    } catch (e) {
+        res.status(404).json({ error: 'No game avialable', userData : JSON.stringify(req.session.user) });
+    }
+});
+
+
 module.exports = router;

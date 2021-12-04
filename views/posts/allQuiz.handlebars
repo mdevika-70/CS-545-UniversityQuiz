@@ -5,8 +5,8 @@
     <div class="col-sm-10">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../professor/category/">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#">All Quiz</a></li>
+          <li class="breadcrumb-item"><a class="student_dash" href="../professor/category/">Dashboard</a></li>
+          <li class="breadcrumb-item"><a class="student_dash" href="#">All Quiz</a></li>
         </ol>
       </nav>
 
@@ -20,15 +20,15 @@
             {{#if quizReleased }}
             {{else}}
             {{#if isTimerEnabled}}
-            <button type="submit" class="btn btn-primary disableToggleClass" data-id="{{_id}}"
+            <button type="submit" class="btn btn-info disableToggleClass" data-id="{{_id}}"
               data-value="{{isTimerEnabled}}" id="timerToggleID">Disable
               Timer</button>
             {{else}}
-            <button type="submit" class="btn btn-primary enableToggleClass" data-id="{{_id}}"
+            <button type="submit" class="btn btn-info enableToggleClass" data-id="{{_id}}"
               data-value="{{isTimerEnabled}}" id="timerToggleID">Enable
               Timer</button>
             {{/if}}
-            <button type="submit" class="btn btn-primary quizReleaseToggleClass" data-id="{{_id}}"
+            <button type="submit" class="btn btn-info quizReleaseToggleClass" data-id="{{_id}}"
               data-value="{{quizReleased}}" id="quizReleaseToggleID">Quiz Release</button>
             {{/if}}
           </li>
