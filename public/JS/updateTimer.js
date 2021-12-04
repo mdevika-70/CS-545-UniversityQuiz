@@ -12,7 +12,7 @@ $('#todoArea').on('click', '.disableToggleClass', function () {
         request.done(function (msg) {
             if (dataValue) {
                 $("button.disableToggleClass[data-id='" + dataIDValue + "'][data-value='" + dataValue + "']").hide();
-                $('li').find('[data-id=' + dataIDValue + ']').parent().append('<button type="submit" class="btn btn-primary enableToggleClass" data-id=' + dataIDValue + ' data-value=' + msg.status + ' id = "timerToggleID" > Enable Timer</button > ');
+                $('li').find('[data-id=' + dataIDValue + ']').parent().append('<button type="submit" class="btn btn-info enableToggleClass" data-id=' + dataIDValue + ' data-value=' + msg.status + ' id = "timerToggleID" > Enable Timer</button > ');
                 alert(msg.message)
                 location.reload()
             } else {
@@ -40,7 +40,7 @@ $('#todoArea').on('click', '.enableToggleClass', function () {
         request.done(function (msg) {
             if (!dataValue) {
                 $("button.enableToggleClass[data-id='" + dataIDValue + "'][data-value='" + dataValue + "']").hide();
-                $('li').find('[data-id=' + dataIDValue + ']').parent().append('<button type="submit" class="btn btn-primary disableToggleClass" data-id=' + dataIDValue + ' data-value=' + msg.status + ' id = "timerToggleID" > Disable Timer</button > ');
+                $('li').find('[data-id=' + dataIDValue + ']').parent().append('<button type="submit" class="btn btn-info disableToggleClass" data-id=' + dataIDValue + ' data-value=' + msg.status + ' id = "timerToggleID" > Disable Timer</button > ');
                 alert(msg.message)
                 location.reload()
             } else {

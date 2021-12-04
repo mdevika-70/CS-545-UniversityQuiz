@@ -161,3 +161,34 @@ h2 {
 .edit-profile{
   font-size: 12px;
 }
+
+/* new changes: devika */
+body{
+  background-size: cover;
+  background-image: url(https://www.leadquizzes.com/wp-content/uploads/2019/02/New-blog-graphic.jpg);
+
+}
+.home-nav{
+  background-color: #000;
+}
+.footerSec{
+  margin-bottom: 0;
+    background-color: #000;
+    color: #fff;
+}
+.text-muted{
+
+  color: #cb0b0b!important;
+}
+
+a{
+  color: #00ff7f;
+}
+.student_dash{
+  color: #0778f1;
+}
+#number{
+  width: 350px;
+  margin-left: 75%;
+
+}

@@ -6,8 +6,8 @@
             <h1>{{title}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./category">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Create Category</a></li>
+                    <li class="breadcrumb-item"><a class="student_dash" href="./category">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a class="student_dash" href="#">Create Category</a></li>
                 </ol>
             </nav>
             {{#if success }}
@@ -34,7 +34,7 @@
                         placeholder="Enter Sub Category" autocomplete="off" required>
                 </div>
                 <button type="submit" name="submitCategoryData" id="submitCategoryData"
-                    class="btn btn-primary">Submit</button>
+                    class="btn btn-info">Submit</button>
             </form>
         </div>
     </div>

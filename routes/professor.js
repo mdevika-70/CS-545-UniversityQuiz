@@ -174,4 +174,14 @@ router.post('/createCategory', async (req, res) => {
     }
 });
 
+router.get('/micro-breaks', async (req, res) => {
+    try {
+        let getAllCategoryData = await usersData.getCategoryData(req.session.user, "category");
+        res.status(getAllCategoryData.statusCode?getAllCategoryData.statusCode:200).render('posts/microbreaks', { categoriesResult: getAllCategoryData.data, message: getAllCategoryData.message, error: getAllCategoryData.error, userData : JSON.stringify(req.session.user) })
+        } catch (e) {
+        res.status(404).json({ error: 'No game avialable', userData : JSON.stringify(req.session.user) });
+    }
+
+});
+
 module.exports = router;

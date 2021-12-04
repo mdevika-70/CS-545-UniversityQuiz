@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Quizmania | Online quiz | Learning Managment</title>
+  <title>UniversityQuiz | Online quiz | Learning Managment</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -19,9 +19,17 @@
     <main>
       {{{body}}}
       <div class="jumbotron text-center footerSec fixed-bottom" style="margin-bottom:0">
-        <p>Copyright © 2021 QuizMania, Inc. All rights reserved.</p>
+        <p>Copyright © 2021 UniversityQuiz, Inc. All rights reserved.</p>
       </div>
     </main>
   </body>
+
+  <script>
+    $(function() {
+        $.get('http://numbersapi.com/random', function(data) {
+            $('#number').text("Facts : "+ data);
+        });
+    });
+  </script>
 
 </html>
